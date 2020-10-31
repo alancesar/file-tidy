@@ -27,12 +27,33 @@ func NewBuilder() *Builder {
 func LookFor(rootPath string, types ...mime.Type) []string {
 	paths := make([]string, 0)
 	_ = filepath.Walk(rootPath, func(path string, info os.FileInfo, err error) error {
-		if info == nil || info.IsDir() || !info.Mode().IsRegular() {
+		if !isFile(info) {
 			return nil
 		}
 
 		for index := range types {
 			if mime.Is(path, types[index]) {
+				paths = append(paths, path)
+			}
+		}
+
+		return nil
+	})
+
+	return paths
+}
+
+// LookFor deep walks in a path and get all files that match with a provided extension including the dot (.) symbol.
+func LookForExtension(rootPath string, extensions ...string) []string {
+	paths := make([]string, 0)
+	_ = filepath.Walk(rootPath, func(path string, info os.FileInfo, err error) error {
+		if !isFile(info) {
+			return nil
+		}
+
+		for index := range extensions {
+			ext := filepath.Ext(path)
+			if extensions[index] == ext {
 				paths = append(paths, path)
 			}
 		}
@@ -57,4 +78,12 @@ func (b *Builder) FromPattern(pattern string, source interface{}) (string, error
 
 	elements := strings.Split(buf.String(), b.separator)
 	return filepath.Join(elements...), nil
+}
+
+func isFile(info os.FileInfo) bool {
+	if info != nil && !info.IsDir() && info.Mode().IsRegular() {
+		return true
+	}
+
+	return false
 }
