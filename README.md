@@ -77,18 +77,18 @@ import (
 
 func main() {
     myStruct := struct {
-		Track  int
-		Title  string
-		Artist string
-		Album  string
-		Year   int
-	}{
-		Track:  7,
-		Title:  "Basket Case",
-		Artist: "Green Day",
-		Album:  "Dookie",
-		Year:   1994,
-	}
+        Track  int
+        Title  string
+        Artist string
+        Album  string
+        Year   int
+    }{
+        Track:  7,
+        Title:  "Basket Case",
+        Artist: "Green Day",
+        Album:  "Dookie",
+        Year:   1994,
+    }
 
     output, _ := path.NewBuilder().
     		FromPattern("{{.Artist}}/[{{.Year}}] {{.Album}}/{{printf \"%02d\" .Track}} - {{.Title}}", myStruct)
