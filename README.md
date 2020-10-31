@@ -65,7 +65,7 @@ func main() {
 }
 ```
 
-#### path.Builder.FromPattern
+#### path.Builder.FromPattern()
 creates a path from an interface{} based on a pattern using text/template engine.
 ```go
 package main
