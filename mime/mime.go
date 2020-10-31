@@ -8,10 +8,10 @@ import (
 type Type string
 
 const (
-	ApplicationOctetStream Type = "application/octet-stream"
-	Application            Type = "application/"
-	AudioType              Type = "audio/"
-	ImageType              Type = "image/"
+	ApplicationOctetStreamType Type = "application/octet-stream"
+	ApplicationType            Type = "application/"
+	AudioType                  Type = "audio/"
+	ImageType                  Type = "image/"
 )
 
 // Is checks if a file is a provide Type.
