@@ -2,11 +2,11 @@ package path
 
 import (
 	"bytes"
+	"github.com/alancesar/tidy-file/mime"
 	"os"
 	"path/filepath"
 	"strings"
 	"text/template"
-	"tidy-file/mime"
 )
 
 const (
@@ -37,7 +37,7 @@ func LookFor(rootPath string, t mime.Type) []string {
 	return paths
 }
 
-// FromPattern creates a path from a interface{} based on a pattern using text/template engine.
+// FromPattern creates a path from an interface{} based on a pattern using text/template engine.
 func (b *Builder) FromPattern(pattern string, source interface{}) (string, error) {
 	parsed, err := template.New("path").Parse(pattern)
 	if err != nil {

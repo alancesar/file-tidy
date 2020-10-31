@@ -1,4 +1,4 @@
-module tidy-file
+module github.com/alancesar/tidy-file
 
 go 1.15
 
