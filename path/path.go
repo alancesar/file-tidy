@@ -31,9 +31,13 @@ func LookFor(rootPath string, types ...mime.Type) []string {
 			return nil
 		}
 
-		for index := range types {
-			if mime.Is(path, types[index]) {
-				paths = append(paths, path)
+		if len(types) == 0 {
+			paths = append(paths, path)
+		} else {
+			for index := range types {
+				if mime.Is(path, types[index]) {
+					paths = append(paths, path)
+				}
 			}
 		}
 
