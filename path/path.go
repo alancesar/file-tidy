@@ -85,6 +85,18 @@ func (b *Builder) FromPattern(pattern string, source interface{}) (string, error
 	return filepath.Join(elements...), nil
 }
 
+// Exists checks if a file or directory exist
+func Exists(path string) (bool, error) {
+	_, err := os.Stat(path)
+	if err == nil {
+		return true, nil
+	} else if os.IsNotExist(err) {
+		return false, nil
+	}
+
+	return false, err
+}
+
 func isFile(info os.FileInfo) bool {
 	if info != nil && !info.IsDir() && info.Mode().IsRegular() {
 		return true
